@@ -1,4 +1,5 @@
-# IspitApp
+# KWA-exam-App
+This is a project done for the Client Web App development exam.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
