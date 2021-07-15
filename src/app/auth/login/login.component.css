@@ -1,0 +1,11 @@
+form {
+    height: 300px;
+    border: 1px black solid;
+    border-radius: 10px;
+    width: 400px;
+    margin:20px auto;
+}
+form .input{
+    width: 250px;
+    text-align: center;
+}

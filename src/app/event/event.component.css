@@ -1,0 +1,29 @@
+.filter{
+    width: 350px;
+    margin: auto;
+    padding: 10px;
+}
+.filter p{
+    display: inline;
+    margin: 0 15px;
+    width: 150px;
+}
+.eventData{
+    background-color: white;
+    width: 1600px;
+    padding: 30px;
+    border-radius: 20px;
+    margin: auto;
+    box-shadow: 2px 2px 10px #ccc;
+}
+.removeFilter{
+    margin: auto;
+    margin-bottom: 20px;
+    width: 150px;
+}
+.removeFilter button{
+    width: 150px;
+}
+.tag {
+    margin: 0 5px;
+}

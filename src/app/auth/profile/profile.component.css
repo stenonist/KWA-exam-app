@@ -1,0 +1,38 @@
+.info{
+    width: 1200px;
+    margin: auto;
+}
+.rounded{
+    border-radius: 20px;
+}
+.red{
+    display: grid;
+    grid-template-columns: 30px 200px 250px 270px 200px 200px 200px;
+}
+.red *{
+    display: inline;
+    margin: 5px 0;
+    text-align: center;
+}
+.red p{
+    font-weight: bold;
+    line-height: 36px;
+}
+#events{
+    box-shadow: 2px 2px 10px #ccc;
+    padding: 20px;
+    border-radius: 20px;
+    width: 1390px;
+    margin: auto;
+}
+#events h2{
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+}
+.devider{
+    border-bottom: 1px solid black;
+    margin: 15px 0;
+}

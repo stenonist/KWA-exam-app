@@ -1,0 +1,33 @@
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px"
+    #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <mat-form-field class="input">
+            <input type="text" matInput placeholder="Your Name" ngModel name="name"
+            required #nameInput="ngModel">
+            <mat-error *ngIf="nameInput.hasError('required')">Field should not be empty</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <input type="email" matInput placeholder="Your Surname" ngModel name="surname"
+            required #surnameInput="ngModel">
+            <mat-error *ngIf="surnameInput.hasError('required')">Field should not be empty</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <input type="email" matInput placeholder="Your Email" ngModel name="email"
+            email required #emailInput="ngModel">
+            <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">Enter the correct format</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input" hintLabel="Please enter minimum 8 characters.">
+            <input type="password" matInput placeholder="Your password" ngModel name="password"
+            required minlength="8" #passInput="ngModel">
+            <mat-hint align="end"> {{ passInput.value?.length }} / 8 </mat-hint>
+        </mat-form-field>
+
+        <!-- Location dropdown -->
+
+        <!-- input i zasebni button koji dodajte tagove -->
+
+        <button mat-raised-button type="submit" color="primary">Submit</button>
+    </form>
+</section>

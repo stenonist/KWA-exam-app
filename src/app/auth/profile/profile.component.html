@@ -1,0 +1,72 @@
+<div class="info">
+    <h1>Welcome {{ currUser.name}} {{ currUser.surname}}</h1>
+    <h2>E-mail: {{ currUser.email }}</h2>
+    <h2 style="display: inline; margin-right: 10px;">Selected location:</h2>
+    <mat-form-field appearance="fill">
+        <mat-label>{{currUser.location}}</mat-label>
+        <mat-select [(ngModel)]="selectedLocation" (ngModelChange)="changeLocation()">
+            <mat-option *ngFor="let location of locations" [value]="location">{{location}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div style="display: block;">
+        <mat-form-field>
+            <input #inp style="width: 200px;" matInput type="text" placeholder="Enter a Tag">
+        </mat-form-field>
+        <button style="display: inline; margin: 0 20px;" mat-raised-button (click)="addPrivateTag(inp.value);inp.value=''">Add</button>
+    </div>
+    <div>
+        <h2>Private tags: {{ tags }}</h2>
+    </div>
+</div>
+
+<div id="events">
+    <h2>Active events:</h2>
+    <div *ngIf="activeEvents.length!=0"  class="red">
+        <h3>ID</h3>
+        <h3>Event name</h3>
+        <h3>Short description</h3>
+        <h3>Event Location</h3>
+        <h3>Start date</h3>
+        <h3>End date</h3>
+        <h3></h3>
+    </div>
+    <h3 style="text-align: center;" *ngIf="activeEvents.length==0">There is no active Events that you reserved.</h3>
+    <div class="red" *ngFor="let event of activeEvents">
+        <p class="polje">{{ event.id }}</p>
+        <p class="polje">{{ event.name }}</p>
+        <p class="polje">{{ event.description }}</p>
+        <p class="polje">{{ event.location }}</p>
+        <p class="polje">{{ event.eventStart | date: 'd.M.y - H:mm'}}</p>
+        <p class="polje">{{ event.eventEnd | date: 'd.M.y - H:mm'}}</p>
+        <button mat-raised-button (click)="removeEvent(event.id)">Remove Event</button>
+    </div>
+
+    <div class="devider"></div>
+
+    
+    <h2>Passed events:</h2>
+    <div *ngIf="passedEvents.length!=0" class="red">
+        <h3>ID</h3>
+        <h3>Event name</h3>
+        <h3>Short description</h3>
+        <h3>Event Location</h3>
+        <h3>Start date</h3>
+        <h3>End date</h3>
+        <h3>Grade</h3>
+    </div>
+    <h3 style="text-align: center;" *ngIf="passedEvents.length==0">There is no passed Events that you reserved.</h3>
+    <div class="red" *ngFor="let event of passedEvents">
+        <p class="polje">{{ event.id }}</p>
+        <p class="polje">{{ event.name }}</p>
+        <p class="polje">{{ event.description }}</p>
+        <p class="polje">{{ event.location }}</p>
+        <p class="polje">{{ event.eventStart | date: 'd.M.y - H:mm'}}</p>
+        <p class="polje">{{ event.eventEnd | date: 'd.M.y - H:mm'}}</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Rate Event</mat-label>
+            <mat-select [(ngModel)]="selectedGrade" (ngModelChange)="rateEvent(event.id)"> 
+                <mat-option *ngFor="let grade of grades" [value]="grade">{{grade}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>

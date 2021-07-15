@@ -1,0 +1,71 @@
+<div class="filter">
+    <p>Apply filter</p>  
+    <mat-form-field>
+        <input #inp matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="">
+    </mat-form-field>
+    <h3 *ngIf="!currUser" style="font-weight: 300;font-size: 1.2em;">You must be signed in to reserve.</h3>
+    <button style="width: 100%;"mat-raised-button (click)="doFilter(currUser.location)" *ngIf="tags">Filter by Location</button>
+</div>
+<div class="filter" *ngIf="tags">
+    <button class="tag" mat-raised-button *ngFor="let tag of tags" (click)="doFilter(tag)">{{tag}}</button>
+</div>
+<div class="removeFilter" *ngIf="filt">
+    <button mat-raised-button (click)="doFilter(''); inp.value='' ">Remove filters</button>
+</div>
+
+<div class="eventData">
+    <mat-table [dataSource]="eventSource" matSort>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Event Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Event description</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>location</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.location }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="tags">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Tags</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.tags}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="event-start">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Event-start</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.eventStart | date: 'd.M.y - H:mm' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="event-end">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Event-end</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.eventEnd | date: 'd.M.y - H:mm' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="capacity">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Reserve</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.reserve }} / {{ element.capacity }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Event Status</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="grade">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Event grades</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.grades }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="button">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Reserve</mat-header-cell>
+            <mat-cell *matCellDef="let element"><button [disabled]="!currUser" mat-raised-button (click)="reserveEvent(element.id)">Reserve</button></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let rows; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+</div>
